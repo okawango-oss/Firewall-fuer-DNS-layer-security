@@ -1,0 +1,14 @@
+# This file is a custom file to start suricata fw rules on boot
+# Verzeichnis /etc/systemd/system/
+[Unit]
+Description=suricata iptables firewall service
+Before=suricata-firewall.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/etc/iptables/fw_suricata.sh start
+ExecStop=/etc/iptables/fw_suricata.sh stop
+
+[Install]
+WantedBy=multi-user.target
